@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/7b16804764.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="hero">
+        <form action="javascript:sendEmail()" method="post" >
+            <div class="row">
+                <div class="input-group">
+            <input type="text"  id="name"  required>
+            <label for="name"><i class="fa-solid fa-user"></i> Your Name</label>
+            </div> 
+            <div class="input-group">
+                <input type="text" id="number"  required>
+                <label for="number"><i class="fa-solid fa-phone"></i> Phone No.</label>
+                </div> 
+            </div>
+            
+                <div class="input-group">
+                    <input type="email" id="email" required>
+                    <label for="email"><i class="fa-solid fa-envelope"></i> Email Id</label>
+                    </div> 
+                    
+                    <div class="input-group">
+                        <textarea id="message"  rows="8" required></textarea>
+                        <label for="message"><i class="fa-solid fa-message"></i> Your Message</label>
+                        </div> 
+                        <button type="submit" ><i class="fa-solid fa-paper-plane"></i> SUBMIT</button>
+                        
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail(){
+            var name=$('#name').val();
+            var number=$('#number').val();
+            var email=$('#email').val();
+           
+            var message=$('#message').val();
+
+            var Body ='Name: '+name+'<br>Number: '+number+'<br>Email: '+email+'<br>Message: '+message;
+        
+            Email.send({
+                Host : "smtp.elasticemail.com",
+                Username : "ashishgoyal3281@gmail.com",
+                Password : "6BCE11BDC1A21DFB2129523E252639D6B02E",
+                To : 'ashish_206010@saitm.org',
+                From : "ashishgoyal3281@gmail.com",
+                Subject : "New message on contact form",
+                Body : Body
+            }).then(
+              message =>{
+                if(message=='OK'){
+                    alert('Your Message has been send . Thank you for connecting me. ');
+                }
+                else{
+                    console.error (message);
+                    alert('There is error at sending message.');
+                }
+              }
+            );
+            }
+    </script>
+</body>
+</html>
